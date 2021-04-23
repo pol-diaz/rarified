@@ -15,6 +15,9 @@ import { DAOCreate } from "modules/creator";
 import { CreatorProvider } from "modules/creator/state";
 import ScrollToTop from "modules/common/ScrollToTop";
 import { theme } from "theme";
+import Login from "modules/auth"
+import Temporal from "modules/temporal"
+import Home from "modules/home"
 
 import "App.css";
 import { ModalsProvider } from "modules/explorer/ModalsContext";
@@ -60,10 +63,19 @@ const App: React.FC = () => {
         }}
       >
         <QueryClientProvider client={queryClient}>
-          <Box bgcolor="primary.main" position="absolute" width="100%">
+          <Box bgcolor={theme.palette.primary.main }position="absolute" width="100%">
             <Router>
               <ScrollToTop />
               <Switch>
+                <Route exact path="/login">
+                  <Login />
+                </Route>
+                <Route exact path="/temporal">
+                  <Temporal />
+                </Route>
+                <Route exact path="/">
+                  <Home />
+                </Route>
                 <Route path="/creator">
                   <CreatorProvider>
                     <DAOCreate />
@@ -75,8 +87,8 @@ const App: React.FC = () => {
                     <DAOExplorerRouter />
                   </ModalsProvider>
                 </Route>
-                <Redirect to="/explorer" />
               </Switch>
+              <Redirect to="/login"/>
             </Router>
           </Box>
         </QueryClientProvider>

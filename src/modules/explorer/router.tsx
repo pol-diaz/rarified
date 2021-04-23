@@ -14,7 +14,7 @@ export const DAOExplorerRouter = (): JSX.Element => {
       <Route path={`${match.url}/dao`}>
         <DAORouter />
       </Route>
-      <Redirect to={`${match.url}/daos`} />
+      
     </Switch>
   );
 };
